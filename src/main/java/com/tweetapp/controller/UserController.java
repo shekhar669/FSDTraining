@@ -1,4 +1,4 @@
-package com.tech.tweet.controller;
+package com.tweetapp.controller;
 
 import javax.validation.Valid;
 
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tech.tweet.exception.MyResourceNotFoundException;
-import com.tech.tweet.model.GenericResponse;
-import com.tech.tweet.model.LoginInput;
-import com.tech.tweet.model.ResetPasswordRequest;
-import com.tech.tweet.model.User;
-import com.tech.tweet.repository.UserRepository;
+import com.tweetapp.exception.MyResourceNotFoundException;
+import com.tweetapp.model.GenericResponse;
+import com.tweetapp.model.LoginInput;
+import com.tweetapp.model.ResetPasswordRequest;
+import com.tweetapp.model.User;
+import com.tweetapp.repository.UserRepository;
 
 @RestController
 @CrossOrigin("*")
@@ -44,6 +44,7 @@ public class UserController {
 	@PostMapping("/register")
 	@Transactional
 	public User addUser(@RequestBody @Valid User user) {
+		System.out.println("user...."+ user);
 		return userRepository.save(user);
 
 	}
@@ -71,7 +72,7 @@ public class UserController {
 
 	@PostMapping("/login")
 	public User login(@RequestBody @Valid LoginInput input) {
-		User user = userRepository.findByName(input.getName());
+		User user = userRepository.findByLoginId(input.getLoginId());
 		if (null != user && input.getPassword().equals(user.getPassword())) {
 			return user;
 		} else {

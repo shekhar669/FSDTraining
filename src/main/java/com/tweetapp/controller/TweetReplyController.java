@@ -1,4 +1,4 @@
-package com.tech.tweet.controller;
+package com.tweetapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tech.tweet.model.Reply;
-import com.tech.tweet.repository.TweetReplyRepository;
+import com.tweetapp.model.Reply;
+import com.tweetapp.repository.TweetReplyRepository;
 
 @RestController
 @CrossOrigin("*")

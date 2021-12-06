@@ -1,4 +1,4 @@
-package com.tech.tweet.model;
+package com.tweetapp.model;
 
 public class GenericResponse {
 	public GenericResponse(String responseCode, String responseMessage) {

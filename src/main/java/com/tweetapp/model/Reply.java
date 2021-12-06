@@ -1,4 +1,4 @@
-package com.tech.tweet.model;
+package com.tweetapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

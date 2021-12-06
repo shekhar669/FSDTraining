@@ -1,4 +1,4 @@
-package com.tech.tweet.repository;
+package com.tweetapp.repository;
 
 
 import java.util.Properties;
@@ -24,10 +24,10 @@ import com.google.common.base.Preconditions;
 
 @Configuration
 @PropertySource("classpath:persistence.properties")
-@ComponentScan("com.tech.tweet")
+@ComponentScan("com.tweetapp")
 //@ImportResource("classpath*:*springDataConfig.xml")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.tech.tweet")
+@EnableJpaRepositories(basePackages = "com.tweetapp")
 public class PersistenceConfig {
 
     @Autowired
@@ -41,7 +41,7 @@ public class PersistenceConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.tech.tweet");
+        em.setPackagesToScan("com.tweetapp");
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

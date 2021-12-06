@@ -1,11 +1,13 @@
-package com.tech.tweet.repository;
+package com.tweetapp.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import com.tech.tweet.model.Reply;
+import com.tweetapp.model.Reply;
 
+@Repository
 public interface TweetReplyRepository extends CrudRepository<Reply, Long>{
 	List<Reply> findByTweetId(Integer tweetId);
 
