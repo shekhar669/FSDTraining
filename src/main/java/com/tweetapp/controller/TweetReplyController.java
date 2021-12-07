@@ -1,5 +1,8 @@
 package com.tweetapp.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,8 +28,9 @@ public class TweetReplyController {
 
 	@PostMapping("/replies/add")
 	@Transactional
-	public Reply addReply(@RequestBody Reply reply){
-		System.out.println("reply....." + reply);
+	public Reply addReply(@RequestBody Reply reply) {
+		SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
+		reply.setCreateDate(dt.format(new Date()));
 		return tweetReplyRepository.save(reply);
 
 	}

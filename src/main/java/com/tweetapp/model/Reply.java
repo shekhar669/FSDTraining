@@ -13,70 +13,70 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "replies")
 public class Reply {
-	
-	@Id
-    @GeneratedValue
-    @Column(columnDefinition = "INT unsigned")
-    private Integer id;
-	
-	@NotEmpty
-    @Column(columnDefinition = "text", nullable = false)
-    private String message;
-	
-	@NotNull
-    @Column(columnDefinition = "INT", nullable = false)
-    private Integer tweetId;
-	
-	
-    @Length(max = 64)
-    @Column(columnDefinition = "VARCHAR(64)", length = 64, nullable = false)
-    private String fromUser;
 
+	@Id
+	@GeneratedValue
+	@Column(columnDefinition = "INT unsigned")
+	private Integer id;
+
+	@NotEmpty
+	@Column(columnDefinition = "text", nullable = false)
+	private String message;
+
+	@NotNull
+	@Column(columnDefinition = "INT", nullable = false)
+	private Integer tweetId;
+
+	@Length(max = 64)
+	@Column(columnDefinition = "VARCHAR(64)", length = 64, nullable = false)
+	private String fromUser;
+
+	@Column(columnDefinition = "VARCHAR(255)")
+	private String createDate;
+	
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Integer getTweetId() {
+		return tweetId;
+	}
+
+	public void setTweetId(Integer tweetId) {
+		this.tweetId = tweetId;
+	}
+
+	public String getFromUser() {
+		return fromUser;
+	}
+
+	public void setFromUser(String fromUser) {
+		this.fromUser = fromUser;
+	}
 
 	@Override
 	public String toString() {
 		return "Reply [id=" + id + ", message=" + message + ", tweetId=" + tweetId + ", fromUser=" + fromUser + "]";
 	}
 
-
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
-	public String getMessage() {
-		return message;
-	}
-
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-
-	public Integer getTweetId() {
-		return tweetId;
-	}
-
-
-	public void setTweetId(Integer tweetId) {
-		this.tweetId = tweetId;
-	}
-
-
-	public String getFromUser() {
-		return fromUser;
-	}
-
-
-	public void setFromUser(String fromUser) {
-		this.fromUser = fromUser;
-	}
-    
- 
 }

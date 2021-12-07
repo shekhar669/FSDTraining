@@ -1,3 +1,3 @@
 create table USER(id bigint auto_increment, firstname varchar(255),lastname varchar(255), loginid varchar(255), email varchar(255),password varchar(255), contactnumber varchar(255));
 create table TWEETS(id bigint auto_increment,message text, fromUser VARCHAR(255),profileImageUrl VARCHAR(255),url VARCHAR(255),createDate DATE,likes bigint);
-create table REPLIES(id bigint,tweetId bigint,message text,fromUser VARCHAR(255));
+create table REPLIES(id bigint,tweetId bigint,message text,fromUser VARCHAR(255),createDate VARCHAR(255));
