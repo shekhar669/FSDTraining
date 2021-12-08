@@ -1,8 +1,12 @@
 package com.tweetapp.controller;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tweetapp.exception.MyResourceNotFoundException;
@@ -23,6 +28,7 @@ import com.tweetapp.repository.UserRepository;
 @RestController
 @CrossOrigin("*")
 public class UserController {
+	private static final Log LOG = LogFactory.getLog(UserController.class);
 
 	private final UserRepository userRepository;
 
@@ -71,7 +77,11 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public User login(@RequestBody @Valid LoginInput input) {
+	public User login(@RequestBody @Valid LoginInput input,@RequestHeader Map<String, String> headers) {
+		 headers.forEach((key, value) -> {
+		        LOG.info(String.format("Header '%s' = %s", key, value));
+		    });
+		
 		User user = userRepository.findByLoginId(input.getLoginId());
 		if (null != user && input.getPassword().equals(user.getPassword())) {
 			return user;
@@ -83,7 +93,6 @@ public class UserController {
 	
 	@PostMapping("/reset/updatePassword")
 	public GenericResponse updatePassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
-		System.out.println("passs......."+ resetPasswordRequest);
 		User user = userRepository.findByEmail(resetPasswordRequest.getEmail());
 		if (null == user) {
 			throw new MyResourceNotFoundException("user not found");
